@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app='superheroApp'>
 <head>
   <meta charset="UTF-8">
   <title>Superhero Phone Book</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   <script src="app.js"></script>
+</head>
+<body ng-controller="superherosCtrl as vm">
+<input type="text" ng-model="search" placeholder="Search" />
+<div ng-repeat="superhero in vm.superheros | filter:search">
+	<div ng-class="hero"
+	<h2>{{$index}} - {{superhero.name}}</h2>
+	<p>Phone: {{superhero.phone}}</p>
+	<span>Comic: <select ng-model="hero">
+	<option value="dc">DC</option>
+	<option value="marvel">Marvel</option>
+	</select></span>
+	<!-- <img ng-show="img" src='{{superhero.photoUrl}}' style="height:200px;width:300px"> -->
+	<img ng-show="vm.showTrue[$index]" src='{{superhero.photoUrl}}' style="height:200px;width:300px">
+	<button data-ng-click="vm.showTrue[$index] = !vm.showTrue[$index]">Show Me</button>
+
+	</div>	
+</div>
 </body>
 </html>
